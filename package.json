@@ -1,7 +1,7 @@
 {
   "name": "adv-logger",
   "version": "1.1.0",
-  "description": "logger that shows from which file log was called and line number",
+  "description": "A simple utility logger that colors the output randomly with arguments,file name and line number of caller",
   "main": "log.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
