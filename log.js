@@ -8,6 +8,6 @@ let log = (...other)=>{
   let lineNumber = caller.lineNumber
   let colors = ['black','red','green','gray','white','magenta','cyan','yellow']
   let randNum = Math.floor(Math.random() * colors.length)
-  console.log(chalk[colors[randNum]](`${fileName}:${lineNumber}`,...other))
+  console.log(chalk.bgCyan( chalk.black.bold(`${fileName}:${lineNumber}`))+chalk[colors[randNum]](" --",...other))
 }
 module.exports = log
