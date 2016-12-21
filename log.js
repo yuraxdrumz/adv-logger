@@ -29,3 +29,4 @@ let forEach = (arr,action)=>{
 }
 
 module.exports = log;
+log(1,2,3,[1,2,3],"this is a string and now you know it :)",{"this":"is an object! :)"})

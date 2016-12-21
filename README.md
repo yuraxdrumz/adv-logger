@@ -10,10 +10,12 @@ First, install the package using npm:
 `npm install adv-logger --save`
 
 Then, require it and use it like so:
+
 ![alt text](https://i.imgsafe.org/900636ea72.png)
 
 ### Output
-
+from 1.2.1 logger will show type of every argument and color randomly, for faster debugging of course :)
 the output is exactly what you would expect
-![alt text](https://i.imgsafe.org/9476d60cb7.png)
+
+![alt text](https://i.imgsafe.org/ad3c8407c5.png)
 
