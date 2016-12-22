@@ -1,4 +1,4 @@
-# adv-logger
+# adv-logger  [![Build Status](https://travis-ci.org/yuraxdrumz/adv-logger.png?branch=master)](https://travis-ci.org/yuraxdrumz/adv-logger)
 A simple utility method for logging similar to *console.log* , but
 shows filename where it was called and line number. every argument
 will be printed on a different line with its type and a random color
@@ -6,6 +6,7 @@ using chalk npm package.
 
 this utility only uses 2 dependencies and writes using process.stdout.write,
 which allows you to overwrite your console.log if you desire.
+
 
 ## Usage
 
@@ -24,7 +25,4 @@ Then, require it and use it like so:
 from 1.2.1 logger will show type of every argument and color randomly, for faster debugging of course :)
 the output is exactly what you would expect.
 from 1.2.4 added multiline support for es2015's backticks
-
 ![alt text](https://i.imgsafe.org/ba9c47e1d0.png)
-
-
