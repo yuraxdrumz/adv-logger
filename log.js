@@ -22,11 +22,16 @@ let log = (...args)=>{
         console.log(chalk.bgCyan(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,each))
     })
 }
+
+
 let forEach = (arr,action)=>{
     for(let i=0,len=arr.length;i<len;i++){
         action(arr[i])
     }
 }
 
+
+
 module.exports = log;
-log(1,2,3,[1,2,3],"this is a string and now you know it :)",{"this":"is an object! :)"})
+
+log(321,3,[3,2])
