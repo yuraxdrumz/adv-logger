@@ -5,7 +5,7 @@
   "main": "log.js",
   "scripts": {
     "start": "node log.js",
-    "test": "mocha log.test.js"
+    "test": "mocha test.js"
   },
   "keywords": [
     "chalk",
