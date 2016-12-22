@@ -23,14 +23,13 @@ let log = (...args)=>{
     chosenColor = getRandom();
     if(Array.isArray(each)) type = 'array';
     else type = typeof each;
-    console.log(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfEachIsMultiline(each)));
+    process.stdout.write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfEachIsMultiline(each)) + '\n');
   })
-  console.log('---------------------');
+  process.stdout.write('---------------------' + '\n');
 }
 
 let checkIfEachIsMultiline = (each)=>{
   if(typeof each ==='string' && each.includes('\n')){
-    each = '\n' + each;
     return each
   }else{
     each = JSON.stringify(each)
@@ -39,6 +38,3 @@ let checkIfEachIsMultiline = (each)=>{
 }
 
 module.exports = log;
-
-
-
