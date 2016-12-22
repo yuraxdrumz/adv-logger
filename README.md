@@ -12,13 +12,15 @@ First, install the package using npm:
 
 Then, require it and use it like so:
 
+`const log = require('adv-logger');`
+
 ![alt text](https://i.imgsafe.org/ba9cec6e8a.png)
 
 
 ### Output
 from 1.2.1 logger will show type of every argument and color randomly, for faster debugging of course :)
 the output is exactly what you would expect
-from 1.2.3 added multiline support for es2015's backticks
+from 1.2.4 added multiline support for es2015's backticks
 
 ![alt text](https://i.imgsafe.org/ba9c47e1d0.png)
 
