@@ -45,16 +45,16 @@ let checkIfEachIsMultiline = (each)=>{
 
 describe('log', function() {
     it('should return filename:lineNumber no arguments passed', function() {
-        expect(log()).to.equal('log.test.js:48 no arguments were passed! \n');
+        expect(log()).to.equal('test.js:48 no arguments were passed! \n');
     });
     it('should return an array',function(){
         expect(log('123',[1,2,3],{1:2},true,null,undefined)).to.have.members([
-            'log.test.js:51 string \"123\" \n',
-            'log.test.js:51 array [1,2,3] \n',
-            'log.test.js:51 object {\"1\":2} \n',
-            'log.test.js:51 boolean true \n',
-            'log.test.js:51 object null \n',
-            'log.test.js:51 undefined undefined \n',
+            'test.js:51 string \"123\" \n',
+            'test.js:51 array [1,2,3] \n',
+            'test.js:51 object {\"1\":2} \n',
+            'test.js:51 boolean true \n',
+            'test.js:51 object null \n',
+            'test.js:51 undefined undefined \n',
         ])
     })
 });
