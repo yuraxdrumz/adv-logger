@@ -19,13 +19,17 @@ let log = (...args)=>{
   let lineNumber = caller.lineNumber;
   let chosenColor;
   let type;
+  if(args.length === 0){
+    process.stdout.write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[getRandom()]("",'no arguments were passed!' + '\n'));
+    return process.stdout.write('---------------------' + '\n');
+  }
   forEach(args,each=>{
     chosenColor = getRandom();
     if(Array.isArray(each)) type = 'array';
     else type = typeof each;
     process.stdout.write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfEachIsMultiline(each)) + '\n');
   })
-  process.stdout.write('---------------------' + '\n');
+  return process.stdout.write('---------------------' + '\n');
 }
 
 let checkIfEachIsMultiline = (each)=>{
@@ -38,3 +42,4 @@ let checkIfEachIsMultiline = (each)=>{
 }
 
 module.exports = log;
+

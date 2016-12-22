@@ -1,4 +1,7 @@
-# adv-logger  [![Build Status](https://travis-ci.org/yuraxdrumz/adv-logger.png?branch=master)](https://travis-ci.org/yuraxdrumz/adv-logger)
+# adv-logger
+
+[![Build Status](https://travis-ci.org/yuraxdrumz/adv-logger.svg?branch=master)](https://travis-ci.org/yuraxdrumz/adv-logger)
+
 A simple utility method for logging similar to *console.log* , but
 shows filename where it was called and line number. every argument
 will be printed on a different line with its type and a random color
