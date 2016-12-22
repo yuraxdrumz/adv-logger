@@ -12,8 +12,6 @@ First, install the package using npm:
 Then, require it and use it like so:
 ![alt text](https://i.imgsafe.org/900636ea72.png)
 
-### Output
-
-the output is exactly what you would expect
+## Output
 ![alt text](https://i.imgsafe.org/9476d60cb7.png)
 
