@@ -20,16 +20,17 @@ let log = (...args)=>{
     let chosenColor;
     let type;
     if(args.length === 0){
-        process.stdout.write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[getRandom()]("",'no arguments were passed!' + '\n'));
-        return process.stdout.write('---------------------' + '\n');
+        write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[getRandom()]("",'no arguments were passed!' + '\n'));
+        return write('-----------------------------------' + '\n');
     }
     forEach(args,each=>{
+        each = checkIfStringified(each);
         chosenColor = getRandom();
         Array.isArray(each) ? type = 'array' : type = typeof each;
-        process.stdout.write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfMultiLine(each)) + '\n');
-    })
-    return process.stdout.write('---------------------' + '\n');
-}
+        write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfMultiLine(each)) + '\n');
+    });
+    return write('------------------------------ \n');
+};
 
 let checkIfMultiLine = (each)=>{
     if(typeof each ==='string' && each.includes('\n')){
@@ -38,7 +39,20 @@ let checkIfMultiLine = (each)=>{
         each = JSON.stringify(each);
         return each
     }
-}
+};
+
+let write = (msg)=>{
+    process.stdout.write(msg)
+};
+
+let checkIfStringified = (item)=>{
+    try{
+        return JSON.parse(item)
+    }catch(e){
+        return item;
+    }
+};
+
 
 module.exports = log;
 
