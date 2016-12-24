@@ -23,8 +23,11 @@ let checkIfMultiLine = (each)=>{
     if(typeof each ==='string' && each.includes('\n')){
         return each;
     }else{
-        each = JSON.stringify(each);
-        return each;
+        try{
+            return each = JSON.stringify(each);
+        }catch(e){
+            return each
+        }
     }
 };
 
