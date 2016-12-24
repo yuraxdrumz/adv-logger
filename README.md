@@ -29,9 +29,10 @@ from 1.2.1 logger will show type of every argument and color randomly, for faste
 the output is exactly what you would expect.
 from 1.2.4 added multiline support for es2015's backticks.
 1.2.82 features - if you log nothing, console will output no arguments passed.
-1.2.84 features - everything is returned stringified already no need for `JSON.stringify();`.
-1.2.85 features - added comments, if you have a running project and you want to use this logger,
-you can simply do this:
+1.2.84 features - everything is returned stringified already no need for `JSON.stringify();`
+
+1.2.85 features - added comments, if you want to override default console.log with this logger you
+can simply do this:
 
 ![alt text](https://i.imgsafe.org/e7cf4ed101.png)
 
