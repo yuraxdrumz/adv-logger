@@ -1,7 +1,7 @@
 const chalk       = require('chalk');
 const callerId    = require('caller-id');
 const path        = require('path');
-
+const fs          = require('fs');
 //chalk colors with black and gray removed
 let colors = ['red','green','white','magenta','cyan','yellow'];
 
@@ -20,16 +20,26 @@ let getRandom = (arr)=>{
 
 //checks if string is multi line and not stringify it
 let checkIfMultiLine = (each)=>{
-    if(typeof each ==='string' && each.includes('\n')){
+    if(getType(each)==='multi-line' || getType(each)==='function'){
         return each;
     }
-    else if(typeof each === 'function') return each;
     else{
         try{
+            each = checkIfPath(each);
             return each = JSON.stringify(each);
         }catch(e){
             return each;
         }
+    }
+};
+
+// check if string is path and exists, if so, return resolved path
+let checkIfPath = (filePath)=>{
+    try{
+        fs.lstatSync(filePath);
+        return path.resolve(filePath);
+    }catch (e){
+        return filePath;
     }
 };
 
@@ -45,6 +55,34 @@ let checkIfStringified = (item)=>{
     }
 };
 
+//check type of each item
+let getType = (each)=>{
+    try{
+        fs.lstatSync(each);
+        return 'path';
+    }catch (e){
+        if(typeof each ==='string' && each.includes('\n')){
+            return 'multi-line';
+        }else if(typeof each === 'function'){
+            return 'function';
+        }else if(each === null){
+            return 'null';
+        }else if (each === undefined){
+            return 'undefined';
+        }else if (Array.isArray(each)){
+            return 'array';
+        }else if(each instanceof Date){
+            return 'date';
+        }else if(typeof each === 'object'){
+            return 'object';
+        }else if (typeof each === 'string'){
+            return 'string';
+        }else if (!Number.isNaN(each)){
+            return 'number';
+        }
+    }
+};
+
 //main function
 let log = (...args)=>{
     let caller = callerId.getData();
@@ -54,12 +92,12 @@ let log = (...args)=>{
     let type;
     if(args.length === 0){
         write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[getRandom(colors)]("",'no arguments were passed!' + '\n'));
-        return write('-----------------------------------' + '\n');
+        return write('----------------------------------- \n');
     }
     forEach(args,each=>{
         each = checkIfStringified(each);
         chosenColor = getRandom(colors);
-        Array.isArray(each) ? type = 'array' : type = typeof each;
+        type = getType(each);
         write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfMultiLine(each)) + '\n');
     });
     return write('------------------------------ \n');
