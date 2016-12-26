@@ -1,7 +1,6 @@
 const chalk       = require('chalk');
 const callerId    = require('caller-id');
 const path        = require('path');
-const Promise = require('bluebird');
 
 //chalk colors with black and gray removed
 let colors = ['red','green','white','magenta','cyan','yellow'];
