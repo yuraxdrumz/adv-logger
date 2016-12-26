@@ -7,6 +7,8 @@ with file name, line number, custom typeof and random color.
 
 this utility only uses 2 dependencies and writes using process.stdout.write,
 which allows you to overwrite your console.log if you desire.
+
+
 ![alt text](https://i.imgsafe.org/e7cf4ed101.png)
 
 ## Usage
@@ -28,6 +30,8 @@ Then, require it and use it like so:
 ### Output
 
 logger will return one the next types for easier debugging:
+
+
 ``` ['number','string','object','array','multi-line','date','null','undefined','path']```
 
 ![alt text](https://i.imgsafe.org/19a628f0fa.png)
