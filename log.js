@@ -1,9 +1,12 @@
-const chalk       = require('chalk');
 const callerId    = require('caller-id');
 const path        = require('path');
 const fs          = require('fs');
-//chalk colors with black and gray removed
-let colors = ['red','green','white','magenta','cyan','yellow'];
+
+//colors with black,gray and blue removed
+let colors        = ['\033[31m','\033[32m','\033[33m','\033[35m','\033[36m'];
+let underline     = '\033[4m';
+let white         = '\033[37m';
+let lastChosen;
 
 //foreach loop for reuse
 let forEach = (arr,action)=>{
@@ -15,12 +18,17 @@ let forEach = (arr,action)=>{
 //gets an array and returns random item from that array
 let getRandom = (arr)=>{
     let randNum = Math.floor(Math.random() * arr.length);
+    if(lastChosen === randNum){
+        return getRandom(arr);
+    }
+    lastChosen = randNum;
     return arr[randNum]
 };
 
 //checks if string is multi line and not stringify it
 let checkIfMultiLine = (each)=>{
-    if(getType(each)==='multi-line' || getType(each)==='function'){
+    let checkType = getType(each)
+    if(checkType==='multi-line' || checkType==='function'){
         return each;
     }
     else{
@@ -91,16 +99,28 @@ let log = (...args)=>{
     let chosenColor;
     let type;
     if(args.length === 0){
-        write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[getRandom(colors)]("",'no arguments were passed!' + '\n'));
-        return write('----------------------------------- \n');
+        chosenColor = getRandom(colors);
+        write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} no arguments were passed! \n`);
+        return write(`${white}------------------------------------ \n`);
     }
     forEach(args,each=>{
         each = checkIfStringified(each);
         chosenColor = getRandom(colors);
         type = getType(each);
-        write(chalk.underline(chalk.white.bold(`${fileName}:${lineNumber}`))+chalk[chosenColor]("",type,checkIfMultiLine(each)) + '\n');
+        write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} ${type} ${checkIfMultiLine(each)} \n`)
     });
-    return write('------------------------------ \n');
+    return write(`${white}------------------------------------ \n`);
 };
 
 module.exports = log;
+
+// attempt to get line num and filename without dependencies
+let catchError = ()=>{
+    try{
+        throw new Error('sadasd');
+    }catch (e){
+        let stack = e.stack.split('\n').slice(1)[0];
+        let filename = path.basename(__filename);
+        let lineNum = stack.substr(stack.indexOf(filename)).split(':')[1];
+    }
+};
