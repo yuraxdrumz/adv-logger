@@ -1,7 +1,7 @@
 {
   "name": "adv-logger",
-  "version": "1.3.11",
-  "description": "A simple utility logger that colors the output randomly with arguments,file name and line number of caller",
+  "version": "1.3.2",
+  "description": "logger that colors the output randomly with arguments,file name and line number of caller, 0 dependencies",
   "main": "log.js",
   "scripts": {
     "start": "node log.js",
@@ -21,10 +21,6 @@
   ],
   "author": "yurik1992",
   "license": "ISC",
-  "dependencies": {
-    "caller-id": "~0.1.0",
-    "chalk": "~1.1.3"
-  },
   "repository": "yuraxdrumz/adv-logger",
   "devDependencies": {
     "chai": "~3.5.0"

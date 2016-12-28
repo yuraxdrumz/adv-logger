@@ -5,14 +5,16 @@
 A simple utility method for logging similar to *console.log* , but
 with file name, line number, custom typeof and random color.
 
-this utility only uses 2 dependencies and writes using process.stdout.write,
+this utility writes using process.stdout.write,
 which allows you to overwrite your console.log if you desire.
+
+it is only 132 lines long and uses 0 dependencies
 
 
 ![alt text](https://i.imgsafe.org/e7cf4ed101.png)
 
 ## Usage
-
+1.3.2 - features : 0 dependencies, only 132 lines long!.
 the logger will automatically stringify everything for you except functions and multi-lines.
 the logger automatically resolves paths for you if they exist in your system,
 note that on files you have to write the extension for it to work, otherwise it will evaluate to a string!.

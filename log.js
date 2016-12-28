@@ -1,4 +1,3 @@
-const callerId    = require('caller-id');
 const path        = require('path');
 const fs          = require('fs');
 
@@ -90,10 +89,28 @@ let getType = (each)=>{
         }
     }
 };
+// throw err and parse it to get file name and line num
+let catchError = ()=>{
+    try{
+        throw new Error('throwing this to get info of caller');
+    }catch (e){
+        let lineNum;
+        let stack = e.stack.split('\n').slice(1)[2];
+        let filename = stack.substr(stack.indexOf('(')).replace('(',"").replace(")","");
+        let foundCaller = path.basename(filename).split(':');
+        filePath = foundCaller[0];
+        lineNumber = foundCaller[1];
+        return {
+            filePath,
+            lineNumber
+        }
 
+    }
+};
 //main function
 let log = (...args)=>{
-    let caller = callerId.getData();
+    //let caller = callerId.getData();
+    let caller = catchError();
     let fileName = path.basename(caller.filePath);
     let lineNumber = caller.lineNumber;
     let chosenColor;
@@ -113,14 +130,3 @@ let log = (...args)=>{
 };
 
 module.exports = log;
-
-// attempt to get line num and filename without dependencies
-let catchError = ()=>{
-    try{
-        throw new Error('sadasd');
-    }catch (e){
-        let stack = e.stack.split('\n').slice(1)[0];
-        let filename = path.basename(__filename);
-        let lineNum = stack.substr(stack.indexOf(filename)).split(':')[1];
-    }
-};
