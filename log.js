@@ -90,7 +90,7 @@ let getType = (each)=>{
     }
 };
 // throw err and parse it to get file name and line num
-let catchError = ()=>{
+let getStack = ()=>{
     try{
         throw new Error('throwing this to get info of caller');
     }catch (e){
@@ -98,8 +98,8 @@ let catchError = ()=>{
         let stack = e.stack.split('\n').slice(1)[2];
         let filename = stack.substr(stack.indexOf('(')).replace('(',"").replace(")","");
         let foundCaller = path.basename(filename).split(':');
-        filePath = foundCaller[0];
-        lineNumber = foundCaller[1];
+        let filePath = foundCaller[0];
+        let lineNumber = foundCaller[1];
         return {
             filePath,
             lineNumber
@@ -110,7 +110,7 @@ let catchError = ()=>{
 //main function
 let log = (...args)=>{
     //let caller = callerId.getData();
-    let caller = catchError();
+    let caller = getStack();
     let fileName = path.basename(caller.filePath);
     let lineNumber = caller.lineNumber;
     let chosenColor;
