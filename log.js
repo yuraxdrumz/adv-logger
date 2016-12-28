@@ -94,7 +94,6 @@ let getStack = ()=>{
     try{
         throw new Error('throwing this to get info of caller');
     }catch (e){
-        let lineNum;
         let stack = e.stack.split('\n').slice(1)[2];
         let filename = stack.substr(stack.indexOf('(')).replace('(',"").replace(")","");
         let foundCaller = path.basename(filename).split(':');
@@ -109,7 +108,6 @@ let getStack = ()=>{
 };
 //main function
 let log = (...args)=>{
-    //let caller = callerId.getData();
     let caller = getStack();
     let fileName = path.basename(caller.filePath);
     let lineNumber = caller.lineNumber;
