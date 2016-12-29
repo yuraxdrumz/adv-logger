@@ -25,11 +25,10 @@ let getRandom = (arr)=>{
 };
 
 //checks if string is multi line and not stringify it
-let checkIfMultiLine = (each)=>{
-    let checkType = getType(each);
-    if(checkType==='multi-line' || checkType==='function'){
+let checkIfMultiLine = (each,type)=>{
+    if(type==='multi-line' || type==='function'){
         return each;
-    }else if (checkType==='error'){
+    }else if (type==='error'){
         return `\n\t${each.stack}`
     }
     else{
@@ -57,6 +56,9 @@ let write = (msg)=> process.stdout.write(msg);
 
 //tries to parse each argument passed if it was stringified, else returns item as is
 let checkIfStringified = (item)=>{
+    if(Array.isArray(item)){
+        return item;
+    }
     try{
         return JSON.parse(item);
     }catch(e){
@@ -111,6 +113,7 @@ let getStack = ()=>{
 
     }
 };
+
 //main function
 let log = (...args)=>{
     let caller = getStack();
@@ -127,7 +130,7 @@ let log = (...args)=>{
         each = checkIfStringified(each);
         chosenColor = getRandom(colors);
         type = getType(each);
-        write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} ${type} ${checkIfMultiLine(each)} \n`)
+        write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} ${type} ${checkIfMultiLine(each,type)} \n`)
     });
     return write(`${white}------------------------------------ \n`);
 };
