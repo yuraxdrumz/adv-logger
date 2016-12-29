@@ -154,5 +154,3 @@ describe('check all functions used in log', function() {
         expect(getType(new Date())).to.equal('date');
     });
 });
-
-

@@ -34,6 +34,6 @@ Then, require it and use it like so:
 logger will return one the next types for easier debugging:
 
 
-``` ['number','string','object','array','multi-line','date','null','undefined','path']```
+``` ['number','string','object','array','multi-line','date','null','undefined','path','error']```
 
 ![alt text](https://i.imgsafe.org/19a628f0fa.png)

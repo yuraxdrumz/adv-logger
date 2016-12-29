@@ -26,9 +26,11 @@ let getRandom = (arr)=>{
 
 //checks if string is multi line and not stringify it
 let checkIfMultiLine = (each)=>{
-    let checkType = getType(each)
+    let checkType = getType(each);
     if(checkType==='multi-line' || checkType==='function'){
         return each;
+    }else if (checkType==='error'){
+        return `\n\t${each.stack}`
     }
     else{
         try{
@@ -68,6 +70,9 @@ let getType = (each)=>{
         fs.lstatSync(each);
         return 'path';
     }catch (e){
+        if(each instanceof Error){
+            return 'error';
+        }
         if(typeof each ==='string' && each.includes('\n')){
             return 'multi-line';
         }else if(typeof each === 'function'){
