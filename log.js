@@ -56,7 +56,7 @@ let write = (msg)=> process.stdout.write(msg);
 
 //tries to parse each argument passed if it was stringified, else returns item as is
 let checkIfStringified = (item)=>{
-    if(Array.isArray(item)){
+    if(Array.isArray(item) || typeof item === 'string'){
         return item;
     }
     try{
