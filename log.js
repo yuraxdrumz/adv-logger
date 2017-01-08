@@ -15,7 +15,7 @@ let forEach = (arr,action)=>{
 };
 
 //gets an array and returns random item from that array
-let getRandom = (arr)=>{
+let getRandom = arr =>{
     let randNum = Math.floor(Math.random() * arr.length);
     if(lastChosen === randNum){
         return getRandom(arr);
@@ -75,7 +75,10 @@ let getType = (each)=>{
         if(each instanceof Error){
             return 'error';
         }
-        if(typeof each ==='string' && each.includes('\n')){
+        else if(typeof each === 'boolean'){
+            return 'boolean'
+        }
+        else if(typeof each ==='string' && each.includes('\n')){
             return 'multi-line';
         }else if(typeof each === 'function'){
             return 'function';
@@ -136,3 +139,4 @@ let log = (...args)=>{
 };
 
 module.exports = log;
+
