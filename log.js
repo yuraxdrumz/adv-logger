@@ -1,5 +1,4 @@
 const path        = require('path');
-const fs          = require('fs');
 
 //colors with black,gray and blue removed
 let colors        = ['\033[31m','\033[32m','\033[33m','\033[35m','\033[36m'];
@@ -108,18 +107,22 @@ let log = (...args)=>{
   let lineNumber = caller.lineNumber;
   let chosenColor;
   let type;
-  if(args.length === 0){
-    chosenColor = getRandom(colors);
-    write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} no arguments were passed! \n`);
-    return write(`${white}------------------------------------ \n`);
+  switch(args.length){
+    case 0:
+      chosenColor = getRandom(colors);
+      write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} no arguments were passed! \n`);
+      break;
+    default:
+      forEach(args,each=>{
+        each = checkIfStringified(each);
+        chosenColor = getRandom(colors);
+        type = getType(each);
+        write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} ${type} ${checkIfMultiLine(each,type)} \n`)
+      });
+      break;
   }
-  forEach(args,each=>{
-    each = checkIfStringified(each);
-    chosenColor = getRandom(colors);
-    type = getType(each);
-    write(`${underline + white}${fileName}:${lineNumber}` + `${chosenColor} ${type} ${checkIfMultiLine(each,type)} \n`)
-  });
-  return write(`${white}------------------------------------ \n`);
+  write(`${white}------------------------------------ \n`);
+  return write('\x1b[0m')
 };
 
 module.exports = log;
