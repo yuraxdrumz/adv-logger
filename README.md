@@ -16,6 +16,7 @@ it is only 125 lines long and uses 0 dependencies
 ## Usage
 1.3.2 - features : 0 dependencies, only 125 lines long!.
 1.3.27 - features : removed path resolving and added boolean type.
+1.3.29 - fixed console color output.
 the logger will automatically stringify everything for you except functions and multi-lines.
 First, install the package using npm:
 
