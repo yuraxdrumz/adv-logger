@@ -1,9 +1,9 @@
 const path        = require('path');
 
 //colors with black,gray and blue removed
-let colors        = ['\x1b[31m\x1b[0m','\x1b[32m\x1b[0m','\x1b[33m\x1b[0m','\x1b[35m\x1b[0m','\x1b[36m\x1b[0m'];
-let underline     = '\x1b[4m\x1b[0m';
-let white         = '\x1b[37m\x1b[0m';
+let colors        = ['\x1b[31m','\x1b[32m','\x1b[33m','\x1b[35m','\x1b[36m'];
+let underline     = '\x1b[4m';
+let white         = '\x1b[37m';
 let lastChosen;
 
 //foreach loop for reuse
@@ -121,7 +121,7 @@ let log = (...args)=>{
       });
       break;
   }
-  return write(`${white}------------------------------------ \n`);
+  return write(`${white}------------------------------------\x1b[0m\n`);
 };
 
 module.exports = log;
